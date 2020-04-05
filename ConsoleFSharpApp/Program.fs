@@ -20,8 +20,8 @@ let main argv =
     let dbConfig = DatabaseConfiguration("SqlServer2017", "Data Source=.;Initial Catalog=DATABASE_NAME;Integrated Security=True;")
 
 
-    let loggingServices = new Action<ILoggingBuilder>(fun (lb : ILoggingBuilder) -> lb.AddDebug().AddFluentMigratorConsole() |> ignore)
-    let runnerConfig = new Action<IMigrationRunnerBuilder>(fun (builder : IMigrationRunnerBuilder) ->
+    let loggingServices = new Action<ILoggingBuilder>(fun lb -> lb.AddDebug().AddFluentMigratorConsole() |> ignore)
+    let runnerConfig = new Action<IMigrationRunnerBuilder>(fun builder ->
         builder
             .AddSqlServer()
             .WithGlobalConnectionString(dbConfig.ConnectionString)
